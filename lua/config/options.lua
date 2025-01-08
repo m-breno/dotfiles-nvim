@@ -48,7 +48,7 @@ vim.opt.termguicolors = true     -- Enable gui colors
 --vim.opt.pumheight = 10          -- Make popup menu smaller
 --vim.opt.winblend = 10           -- Make floating windows slightly transparent
 
--- ?
+-- autosave
 vim.opt.autowrite     = false -- Auto save files
 vim.opt.autowriteall  = false -- when :q etc
 
@@ -56,7 +56,7 @@ vim.opt.autowriteall  = false -- when :q etc
 vim.opt.tabstop       = 2
 vim.opt.shiftwidth    = 2
 vim.opt.shiftround    = true
-vim.opt.expandtab     = false
+vim.opt.expandtab     = true
 
 vim.opt.scrolloff     = 6 -- Lines of context
 vim.opt.sidescrolloff = 8 -- Columns of context

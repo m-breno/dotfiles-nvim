@@ -1,13 +1,3 @@
--- From mini.basics
-
--- Move by visible lines
---vim.keymap.set({ 'n', 'x' }, 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true })
---vim.keymap.set({ 'n', 'x' }, 'k', [[v:count == 0 ? 'gk' : 'k']], { expr = true })
-
--- Move lines with <M-j> & <M-k>
-vim.keymap.set("n", "<M-j>", "ddp", { desc = "Move line down" })
-vim.keymap.set("n", "<M-k>", "ddkP", { desc = "Move line up" })
-
 -- Copy/paste with system clipboard
 vim.keymap.set({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set("n", "gp", '"+p', { desc = "Paste from system clipboard" })
