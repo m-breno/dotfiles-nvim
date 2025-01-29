@@ -102,35 +102,93 @@ later(function() require('mini.hipatterns').setup({
 later(function() require('mini.indentscope').setup() end)
 later(function() require('mini.move').setup() end)
 later(function() require('mini.pairs').setup() end)
-later(function() require('mini.pick').setup() end)
-later(function() require('mini.splitjoin').setup() end)
+-- later(function() require('mini.pick').setup() end)
+-- later(function() require('mini.splitjoin').setup() end)
 later(function() require('mini.trailspace').setup() end)
 --later(function() require('mini.visits').setup() end)
 
-now(function()
-  -- Use other plugins with `add()`. It ensures plugin is available in current
-  -- session (installs if absent)
-  add({
-    source = 'neovim/nvim-lspconfig',
-    -- Supply dependencies near target plugin
-    depends = { 'williamboman/mason.nvim' },
-  })
-end)
-
-later(function()
-  add({
-    source = 'nvim-treesitter/nvim-treesitter',
-    -- Use 'master' while monitoring updates in 'main'
-    checkout = 'master',
-    monitor = 'main',
-    -- Perform action after every checkout
-    hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
-  })
-  -- Possible to immediately execute code which depends on the added plugin
-  require('nvim-treesitter.configs').setup({
-    ensure_installed = { 'lua', 'vimdoc' },
-    highlight = { enable = true },
-  })
-end)
-
 later(function() add({ source = 'andweeb/presence.nvim', }) end )
+
+--    __
+--   / /__ ___
+--  / (_-</ _ \
+-- /_/___/ .__/
+--      /_/
+
+local servers = {
+  bashls = {
+    cmd = { "bash-language-server", "start" },
+    filetypes = { "bash", "sh" },
+    root_dir = vim.fs.root(0, '.git'),
+  },
+  cssls = {
+    cmd = { 'vscode-css-language-server', '--stdio' },
+    filetypes = { 'css', 'scss', 'less' },
+    init_options = { provideFormatter = true },
+    root_dir = vim.fs.root(0, {'package.json', '.git'}),
+  },
+  html = {
+    cmd = { 'vscode-html-language-server', '--stdio' },
+    filetypes = { 'html', 'templ' },
+    root_dir = vim.fs.root(0, {'package.json', '.git'}),
+    single_file_support = true,
+    settings = {},
+    init_options = {
+      provideFormatter = true,
+      embeddedLanguages = { css = true, javascript = true },
+      configurationSection = { 'html', 'css', 'javascript' },
+    }
+  },
+  hyprls = {
+    cmd = { 'hyprls', '--stdio' },
+    filetypes = { 'hyprlang' },
+    root_dir = vim.fs.root(0, '.git'),
+  },
+  lua_ls = {
+    name = "lua-language-server",
+    cmd = { "lua-language-server" },
+    root_dir = vim.fs.root(0, { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" }),
+    filetypes = { "lua" },
+  },
+  marksman = {
+    cmd = { "marksman", "server"},
+    filetypes = { 'markdown', 'markdown.mdx' },
+    root_dir = vim.fs.root(0, '.git'),
+  },
+  pylsp = {
+    cmd = { 'pylsp' },
+    filetypes = { 'python' },
+    root_dir = vim.fs.root(0, {'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile',}),
+  }
+}
+local group = vim.api.nvim_create_augroup("UserLspStart", { clear = true })
+for name, config in pairs(servers) do
+  vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    pattern = config.filetypes,
+    callback = function (ev)
+      vim.lsp.start(servers[name], { bufnr = ev.buf })
+    end,
+  })
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function()
+        pcall(vim.treesitter.start)
+    end
+})
+
+vim.filetype.add({
+  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "hyprlang",
+  callback = function()
+    vim.bo.commentstring = "# %s"
+  end
+})
+
+later(function() add({ source = 'rafamadriz/friendly-snippets', })
+  -- require("luasnip.loaders.from_vscode").setup()
+end)
