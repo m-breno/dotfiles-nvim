@@ -73,7 +73,7 @@ now(function() require('mini.completion').setup({
      source_func = 'omnifunc',
    }
 }) end)
-now(function() require('mini.cursorword').setup() end)
+-- now(function() require('mini.cursorword').setup() end)
 now(function() require('mini.files').setup() end)
 now(function() require('mini.map').setup() end)
 now(function() require('mini.sessions').setup({
