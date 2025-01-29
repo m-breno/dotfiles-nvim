@@ -38,7 +38,7 @@ now(function() add({ source = 'sainnhe/gruvbox-material', })
   vim.g.gruvbox_material_enable_italic = false
   vim.g.gruvbox_material_background = "hard"
   vim.cmd("colorscheme gruvbox-material")
-end )
+end)
 
 now(function()
   require('mini.basics').setup({

@@ -1,5 +1,3 @@
--- From mini.basics
-
 vim.g.mapleader       = " " -- Use space as the one and only true Leader key
 vim.g.maplocalleader  = " "
 
