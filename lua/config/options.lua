@@ -67,3 +67,13 @@ vim.opt.colorcolumn   = "80"
 
 -- Wrap lines at 80 columns
 vim.opt.textwidth     = 80
+
+-- Enable folding
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- Fix scroll animation
+vim.opt.mousescroll = "ver:1"
