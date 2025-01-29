@@ -1,9 +1,9 @@
---            _       _      _                
---  _ __ ___ (_)_ __ (_)  __| | ___ _ __  ___ 
--- | '_ ` _ \| | '_ \| | / _` |/ _ \ '_ \/ __|
--- | | | | | | | | | | || (_| |  __/ |_) \__ \
--- |_| |_| |_|_|_| |_|_(_)__,_|\___| .__/|___/
---                                 |_|        
+--        _      _      _
+--  _ __ (_)_ _ (_)  __| |___ _ __ ___
+-- | '  \| | ' \| |_/ _` / -_) '_ (_-<
+-- |_|_|_|_|_||_|_(_)__,_\___| .__/__/
+--                           |_|
+
 
 -- Clone 'mini.nvim' manually in a way that it gets managed by 'mini.deps'
 
@@ -20,15 +20,16 @@ end
 -- Set up 'mini.deps' (customize to your liking)
 require('mini.deps').setup({ path = { package = path_package } })
 
---            __            _           
---     ____  / /_  ______ _(_)___  _____
---    / __ \/ / / / / __ `/ / __ \/ ___/
---   / /_/ / / /_/ / /_/ / / / / (__  ) 
---  / .___/_/\__,_/\__, /_/_/ /_/____/  
--- /_/            /____/                
+--          __          _
+--    ___  / /_ _____ _(_)__  ___
+--   / _ \/ / // / _ `/ / _ \(_-<
+--  / .__/_/\_,_/\_, /_/_//_/___/
+-- /_/          /___/
 
 -- Use 'mini.deps'. `now()` and `later()` are helpers for a safe two-stage
 -- startup and are optional.
+
+---@diagnostic disable-next-line: undefined-global
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
 -- # UI
