@@ -67,7 +67,7 @@ now(function() require('mini.extra').setup() end)
 now(function() require('mini.tabline').setup() end)
 now(function() require('mini.statusline').setup() end) -- TODO: configure s-line
 now(function() require('mini.animate').setup() end)
-now(function() require('mini.clue').setup() end)
+-- now(function() require('mini.clue').setup() end)
 now(function() require('mini.completion').setup({
    lsp_completion = {
      source_func = 'omnifunc',
@@ -75,21 +75,19 @@ now(function() require('mini.completion').setup({
 }) end)
 -- now(function() require('mini.cursorword').setup() end)
 now(function() require('mini.files').setup() end)
-now(function() require('mini.map').setup() end)
-now(function() require('mini.sessions').setup({
-  autoread = false,
-}) end)
+-- now(function() require('mini.map').setup() end)
+-- now(function() require('mini.sessions').setup({
+  -- autoread = false,
+-- }) end)
 --now(function() require('mini.starter').setup() end)
 
 -- # Code
-later(function() require('mini.ai').setup() end)
-later(function() require('mini.align').setup() end)
+-- later(function() require('mini.ai').setup() end)
+-- later(function() require('mini.align').setup() end)
 later(function() require('mini.comment').setup() end)
-later(function() require('mini.pick').setup() end)
-later(function() require('mini.surround').setup() end)
-later(function() require('mini.comment').setup() end)
+-- later(function() require('mini.surround').setup() end)
 later(function() require('mini.diff').setup() end)
-later(function() require('mini.fuzzy').setup() end)
+-- later(function() require('mini.fuzzy').setup() end)
 later(function() require('mini.git').setup() end)
 later(function() require('mini.hipatterns').setup({
   highlighters = {
