@@ -68,7 +68,11 @@ now(function() require('mini.tabline').setup() end)
 now(function() require('mini.statusline').setup() end) -- TODO: configure s-line
 now(function() require('mini.animate').setup() end)
 now(function() require('mini.clue').setup() end)
-now(function() require('mini.completion').setup() end)
+now(function() require('mini.completion').setup({
+   lsp_completion = {
+     source_func = 'omnifunc',
+   }
+}) end)
 now(function() require('mini.cursorword').setup() end)
 now(function() require('mini.files').setup() end)
 now(function() require('mini.map').setup() end)
